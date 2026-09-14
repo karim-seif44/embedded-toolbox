@@ -9,6 +9,15 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 add_library(toolbox_warnings INTERFACE)
 target_compile_options(toolbox_warnings INTERFACE -Wall -Wextra -Wpedantic -Werror)
 
+option(SANITIZE "Build with Address and UndefinedBehaviour sanitizers" OFF)
+add_library(toolbox_sanitizers INTERFACE)
+if(SANITIZE)
+  target_compile_options(toolbox_sanitizers INTERFACE
+    -fsanitize=address,undefined -fno-omit-frame-pointer -g)
+  target_link_options(toolbox_sanitizers INTERFACE
+    -fsanitize=address,undefined)
+endif()
+
 add_library(toolbox INTERFACE)
 target_include_directories(toolbox INTERFACE include)
 
