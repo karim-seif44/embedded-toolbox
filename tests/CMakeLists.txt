@@ -1,4 +1,4 @@
-add_executable(toolbox_tests bits_test.cpp)
+add_executable(toolbox_tests bits_test.cpp timer_test.cpp)
 target_link_libraries(toolbox_tests
   PRIVATE toolbox toolbox_warnings toolbox_sanitizers GTest::gtest_main)
 
